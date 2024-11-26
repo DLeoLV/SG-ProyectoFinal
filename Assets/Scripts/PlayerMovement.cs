@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float rotationSpeed = 100f;
+    public float verticalSpeed = 5f;
 
     void Update()
     {
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
         }
+
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
+
         if (Input.GetKey(KeyCode.Q))
         {
             transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
@@ -32,6 +35,15 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKey(KeyCode.E))
         {
             transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            transform.Translate(Vector3.down * verticalSpeed * Time.deltaTime);
         }
     }
 }
