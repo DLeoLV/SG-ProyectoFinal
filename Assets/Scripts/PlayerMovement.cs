@@ -7,43 +7,56 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float rotationSpeed = 100f;
     public float verticalSpeed = 5f;
+    public float smoothTime = 2f;
+
+    private Vector3 targetPosition;
+    private Quaternion targetRotation;
+
+    void Start()
+    {
+        targetPosition = transform.position;
+        targetRotation = transform.rotation;
+    }
 
     void Update()
     {
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            targetPosition += transform.forward * moveSpeed * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
+            targetPosition += transform.forward * -moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            targetPosition += transform.right * -moveSpeed * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.Q))
-        {
-            transform.Rotate(Vector3.up, -rotationSpeed * Time.deltaTime);
-        }
-        else if (Input.GetKey(KeyCode.E))
-        {
-            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+            targetPosition += transform.right * moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.Space))
         {
-            transform.Translate(Vector3.up * verticalSpeed * Time.deltaTime);
+            targetPosition += transform.up * verticalSpeed * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.LeftShift))
         {
-            transform.Translate(Vector3.down * verticalSpeed * Time.deltaTime);
+            targetPosition += transform.up * -verticalSpeed * Time.deltaTime;
         }
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            targetRotation *= Quaternion.Euler(Vector3.up * -rotationSpeed * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            targetRotation *= Quaternion.Euler(Vector3.up * rotationSpeed * Time.deltaTime);
+        }
+
+        transform.position = Vector3.Lerp(transform.position, targetPosition, smoothTime * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, smoothTime * Time.deltaTime);
     }
 }
