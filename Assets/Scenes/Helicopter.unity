@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -399,28 +399,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549302652}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a403e9a4a2e22746a7967e9bcea11d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   port: 0
-  engineA: {fileID: 0}
-  engineAHex: {fileID: 0}
-  sliderA: {fileID: 0}
-  engineB: {fileID: 0}
-  engineBHex: {fileID: 0}
-  sliderB: {fileID: 0}
-  engineC: {fileID: 0}
-  engineCHex: {fileID: 0}
-  sliderC: {fileID: 0}
-  Data: {fileID: 0}
+  valueA: 125
+  valueB: 125
+  valueC: 125
   active: 0
   SmoothEngine: 0.5
   A: 0
   B: 0
   C: 0
-  longg: 0
+  longg: 50
   waitStart: 0
   vehicle: {fileID: 1082499403}
   positionMotorA: 125
@@ -3044,7 +3037,7 @@ Transform:
   m_GameObject: {fileID: 5873437247036241089}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 600, y: 3, z: 250}
+  m_LocalPosition: {x: 529.4, y: 3, z: 224.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
