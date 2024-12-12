@@ -404,6 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a403e9a4a2e22746a7967e9bcea11d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualData: 
   port: 0
   valueA: 125
   valueB: 125
@@ -2152,7 +2153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e39ac88ae6cf2d42837a59b5b072af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 15
   rotationSpeed: 50
   verticalSpeed: 5
   smoothTime: 2

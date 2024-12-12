@@ -140,6 +140,18 @@ public class UDPSendTest : MonoBehaviour
 
     void CalcularRotacion()
     {
+
+        //if (vehicle.localEulerAngles.z < 180 && vehicle.localEulerAngles.z > 0)
+        //{
+        //    B = (int)Mathf.Lerp(B, 200, Time.deltaTime * SmoothEngine);
+        //    C = (int)Mathf.Lerp(C, 0, Time.deltaTime * SmoothEngine);
+        //}
+        //else if (vehicle.eulerAngles.z > 180 && vehicle.eulerAngles.z < 360)
+        //{
+        //    B = (int)Mathf.Lerp(B, 0, Time.deltaTime * SmoothEngine);
+        //    C = (int)Mathf.Lerp(C, 200, Time.deltaTime * SmoothEngine);
+        //}
+
         Quaternion rotY = vehicle.rotation;
         rotY.x = 0;
         rotY.z = 0;
@@ -152,24 +164,24 @@ public class UDPSendTest : MonoBehaviour
         float distBA = (Vb1 - Vb2).magnitude * 2;
         float distC = (VbA1 - VbA2).magnitude * 2;
 
-        if (vehicle.eulerAngles.z < 180 && vehicle.eulerAngles.z > 0)
+        if (vehicle.localEulerAngles.z < 180 && vehicle.localEulerAngles.z > 0)
         {
             B = (int)Mathf.Lerp(B, Mathf.Clamp(positionMotorB + distBA * 10, 0, 250), Time.deltaTime * SmoothEngine);
-            A = (int)Mathf.Lerp(A, Mathf.Clamp(positionMotorA - distBA * 10, 0, 250), Time.deltaTime * SmoothEngine);
+            C = (int)Mathf.Lerp(A, Mathf.Clamp(positionMotorA - distBA * 10, 0, 250), Time.deltaTime * SmoothEngine);
         }
-        else if (vehicle.eulerAngles.z > 180 && vehicle.eulerAngles.z < 360)
+        else if (vehicle.localEulerAngles.z > 180 && vehicle.localEulerAngles.z < 360)
         {
             B = (int)Mathf.Lerp(B, Mathf.Clamp(positionMotorB - distBA * 10, 0, 250), Time.deltaTime * SmoothEngine);
-            A = (int)Mathf.Lerp(A, Mathf.Clamp(positionMotorA + distBA * 10, 0, 250), Time.deltaTime * SmoothEngine);
+            C = (int)Mathf.Lerp(A, Mathf.Clamp(positionMotorA + distBA * 10, 0, 250), Time.deltaTime * SmoothEngine);
         }
 
-        if (vehicle.eulerAngles.x < 180 && vehicle.eulerAngles.x > 0)
+        if (vehicle.localEulerAngles.x < 180 && vehicle.localEulerAngles.x > 0)
         {
-            C = (int)Mathf.Lerp(C, Mathf.Clamp(positionMotorC + distC * 10, 0, 250), Time.deltaTime * SmoothEngine);
+            A = (int)Mathf.Lerp(C, Mathf.Clamp(positionMotorC + distC * 10, 0, 250), Time.deltaTime * SmoothEngine);
         }
-        else if (vehicle.eulerAngles.x > 180 && vehicle.eulerAngles.x < 360)
+        else if (vehicle.localEulerAngles.x > 180 && vehicle.localEulerAngles.x < 360)
         {
-            C = (int)Mathf.Lerp(C, Mathf.Clamp(positionMotorC - distC * 10, 0, 250), Time.deltaTime * SmoothEngine);
+            A = (int)Mathf.Lerp(C, Mathf.Clamp(positionMotorC - distC * 10, 0, 250), Time.deltaTime * SmoothEngine);
         }
     }
 
@@ -228,18 +240,24 @@ public class UDPSendTest : MonoBehaviour
 
     private void sendString(string message)
     {
+
         try
         {
+            // Bytes empfangen.
             if (message != "")
             {
+
+                byte[] data = StringToByteArray(message);
                 print(message);
-                actualData = message;
+
+
             }
+
+
         }
         catch (Exception err)
         {
             print(err.ToString());
-            actualData = message;
         }
     }
 
